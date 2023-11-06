@@ -1,0 +1,216 @@
+.search-options-info-holder {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+.profile-image-toolbar {
+  justify-content: space-between;
+
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 100%;
+  border: 2px solid var(--detail);
+}
+
+.profile-image > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 4px solid var(--detail);
+  width: 160px;
+  height: 160px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.modal-background {
+  background: var(--detail);
+  background-size: cover;
+  border: 2px solid var(--primary);
+  min-height: 500px;
+  height: 75vh;
+  width: 600px;
+  position: relative;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: var(--secondaryWithOpacity);
+  width: 100%;
+  height: 100%;
+}
+
+.close-modal-button {
+  display: flex;
+  float: right;
+  font-size: 24px; // Adjust as needed
+  font-weight: bold;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.54); // Material Design icon color
+  width: 36px; // Adjust as needed
+  height: 36px; // Adjust as needed
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.87); // Darken on hover
+  }
+}
+.text-container {
+  padding-left: 1%;
+}
+
+.header-text {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 500;
+  padding: 1%;
+}
+.content-text {
+  color: var(--primary);
+  font-size: 18px;
+  padding: 1%;
+}
+
+.inputs-container {
+  width: 50%;
+  padding-top: 2%;
+}
+.mat-container {
+  padding-top: 20%;
+  padding-left: 5%;
+}
+
+.create-group-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2%;
+  border: 2px solid var(--primary);
+}
+
+button:disabled,
+button[disabled] {
+  border: 2px solid var(--detail);
+  background-color: var(--secondary);
+  color: var(--detail);
+  text-decoration: line-through;
+  cursor: default;
+}
+button:disabled,
+button[disabled]:hover {
+  border: 2px solid var(--detail);
+  background-color: var(--secondary);
+  color: var(--detail);
+  cursor: default;
+}
+
+img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--detail);
+  width: 40px;
+  height: 40px;
+}
+
+.selected-users {
+  max-height: 278px;
+  overflow-y: auto;
+  width: 50%;
+}
+
+.profile-no-image-but-text {
+  color: var(--primary);
+}
+
+.remove-button {
+  background-color: var(--secondary);
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.remove-button:hover {
+  background-color: var(--primary);
+  border: 2px solid var(--detail);
+  color: var(--detail);
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid var(--primary);
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.user-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-container button {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin: 0;
+}
+
+mat-form-field {
+  color: var(--primary);
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: var(--primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--detail) !important;
+}
+
+.selected-users::-webkit-scrollbar {
+  width: 10px;
+  padding-left: 10px;
+  border: 2px solid var(--detail);
+}
+
+.selected-users::-webkit-scrollbar-track {
+  background: var(--detail); /* Adjust track color as needed */
+}
+
+.selected-users::-webkit-scrollbar-thumb {
+  background: var(--primary); /* Adjust thumb color as needed */
+}
+
+.selected-users::-webkit-scrollbar-thumb:hover {
+  background: var(--detail); /* Adjust hover color as needed */
+}

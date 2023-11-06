@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ØkonoMin</ion-title>
+    <ng-container *ngIf="user$ | async as user; else notAuthenticated">
+      <!-- AUTHENTICATED -->
+      <button class="li-icon" mat-button [matMenuTriggerFor]="userMenu">
+        <img
+          class="profile-image-toolbar"
+          width="45"
+          height="45"
+          [src]="user.photoURL ?? 'assets/image-placeholder.png'"
+        />
+        {{ user.displayName }}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+  
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="user/home">
+          <mat-icon class="ul-icons">home</mat-icon>Home
+        </button>
+        <button mat-menu-item class="disabled-button">
+          <mat-icon class="ul-icons">receipt</mat-icon>Your Receipts
+        </button>
+        <button mat-menu-item routerLink="user/profile">
+          <mat-icon class="ul-icons">settings</mat-icon>Settings
+        </button>
+        <button mat-menu-item (click)="navigateToLogout()">
+          <mat-icon class="ul-icons">logout</mat-icon>Logout
+        </button>
+  
+        <ng-container *ngIf="groups$ | async as groups">
+        <div class="vertical-line" *ngIf="groups.length > 0"></div>
+          <button
+            mat-menu-item
+            class="container"
+            *ngFor="let group of groups"
+            (click)="onNavigateTo(group)"
+          >
+            <mat-icon class="ul-icons">group</mat-icon>
+            {{ group.groupName }}
+          </button>
+        </ng-container>
+      </mat-menu>
+    </ng-container>
+  </ion-toolbar>
+</ion-header>
+
+  <!-- header -->
+
+
+  <!-- NOT AUTHENTICATED -->
+  <ng-template #notAuthenticated>
+    <button
+      class="login-button"
+      mat-button
+      routerLink="login"
+      routerLinkActive="active"
+    >
+      <mat-icon>login</mat-icon>Login
+    </button>
+  </ng-template>

@@ -1,0 +1,135 @@
+<div class="image-container" *ngIf="user$ | async as user">
+  <div class="form-container-profile" [@slideInOut]>
+    <h1 class="header-text">Change profile settings</h1>
+    <div class="profile-container">
+      <div class="image-center">
+        <img
+          [src]="
+            croppedImagePreview ||
+            user.photoURL ||
+            'assets/image-placeholder.png'
+          "
+        />
+      </div>
+      <button
+        class="button-for-image"
+        mat-mini-fab
+        (click)="inputField.click()"
+        *ngIf="!isCropping"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <input
+        class="input"
+        type="file"
+        hidden
+        #inputField
+        (change)="fileChangedEvent($event)"
+      />
+      <div *ngIf="isCropping" class="image-cropper-container">
+        <image-cropper
+          class="image-cropper"
+          #cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1 / 1"
+          [roundCropper]="true"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          [cropperMaxWidth]="650"
+          [cropperMaxHeight]="650"
+          [cropperMinHeight]="300"
+          [cropperMinWidth]="300"
+        ></image-cropper>
+      </div>
+      <div class="handler-buttons-container" *ngIf="isCropping">
+        <button class="handler-buttons" (click)="discardChanges()">
+          Cancel
+        </button>
+        <button class="handler-buttons" (click)="uploadFile($event, user)">
+          Apply
+        </button>
+      </div>
+    </div>
+    <div class="border-bottom"></div>
+    <!-- FORM -->
+
+    <form
+      [@slideInOut]=""
+      [formGroup]="profileForm"
+      (ngSubmit)="editProfileSubmit()"
+    >
+      <div class="row-container">
+        <div class="row">
+          <mat-form-field class="inputs-container">
+            <input
+              type="text"
+              matInput
+              formControlName="firstName"
+              placeholder="First Name (optional)"
+            />
+            <mat-error *ngIf="name?.errors?.['pattern']">
+              Only characters from A-Z are allowed.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="inputs-container">
+            <input
+              type="text"
+              matInput
+              formControlName="lastName"
+              placeholder="Last Name (optional)"
+            />
+            <mat-error *ngIf="name?.errors?.['pattern']">
+              Only characters from A-Z are allowed.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="inputs-container-for-email">
+            <input
+              matInput
+              formControlName="displayName"
+              placeholder="Display Name:"
+            />
+            <mat-error *ngIf="name?.errors?.['required']">
+              Display name is required.
+            </mat-error>
+            <mat-error *ngIf="name?.errors?.['minlength']">
+              Display name is too short.
+            </mat-error>
+            <mat-error *ngIf="name?.errors?.['maxlength']">
+              Display name is too long.
+            </mat-error>
+            <mat-error *ngIf="name?.errors?.['pattern']">
+              Only letters are allowed.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="inputs-container-for-email">
+            <input matInput formControlName="email" placeholder="Email:" />
+            <mat-error *ngIf="email?.errors?.['required']">
+              Email is required.</mat-error
+            >
+            <mat-error *ngIf="email?.errors?.['email']">
+              Not a valid email.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="buttons-container">
+          <button
+            class="handler-buttons"
+            type="submit"
+            [disabled]="!profileForm.valid"
+          >
+            Save
+          </button>
+          <mat-error *ngIf="!profileForm.valid"
+            >Please ensure that all fields are valid before proceeding updating
+            your profile.</mat-error
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

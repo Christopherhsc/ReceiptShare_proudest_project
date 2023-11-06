@@ -1,0 +1,13 @@
+.text-header {
+  text-align: center;
+  margin: auto;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-button{
+    color: var(--danger)
+}

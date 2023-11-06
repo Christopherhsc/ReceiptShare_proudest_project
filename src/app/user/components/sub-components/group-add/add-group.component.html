@@ -1,0 +1,99 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-background">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-modal-button" (click)="closeModal()">X</button>
+      <div class="text-container">
+        <div class="header-text">Add a group name</div>
+        <div class="content-text">
+          Please enter a group name to add it to your group list.
+        </div>
+      </div>
+      <div class="mat-container">
+        <div class="content-text">
+          Please ensure the group name is concise.<br />
+          Exceedingly long names are not supported.
+        </div>
+        <mat-form-field class="inputs-container">
+          <input
+            type="text"
+            matInput
+            placeholder="Name of your group:"
+            [formControl]="groupNameControl"
+          />
+          <mat-error *ngIf="groupNameControl.hasError('pattern')">
+            Group name can only contain letters
+          </mat-error>
+          <mat-error *ngIf="groupNameControl.hasError('required')">
+            Group name is required.
+          </mat-error>
+          <mat-error *ngIf="groupNameControl.hasError('minlength')">
+            Group name should be at least 1 character.
+          </mat-error>
+          <mat-error *ngIf="groupNameControl.hasError('maxlength')">
+            Group name should not exceed 20 characters.
+          </mat-error>
+        </mat-form-field>
+        <ng-container *ngIf="user$ | async as user">
+          <div>
+            <mat-form-field class="inputs-container">
+              <input
+                #searchInput
+                matInput
+                placeholder="search for users..."
+                [formControl]="searchControl"
+                [matAutocomplete]="users"
+              />
+            </mat-form-field>
+            <mat-autocomplete
+              #users="matAutocomplete"
+              (optionSelected)="addUserToSelection($event.option.value)"
+            >
+              <mat-option *ngFor="let user of users$ | async" [value]="user">
+                <div class="search-options-info-holder">
+                  {{ user?.displayName }}
+                  <img
+                    class="profile-image-toolbar"
+                    [src]="user.photoURL ?? 'assets/image-placeholder.png'"
+                  />
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+          <div class="selected-users">
+            <div
+              *ngFor="let selectedUser of selectedUsers"
+              class="user-container"
+            >
+              <div class="user-content">
+                <ng-container
+                  *ngIf="selectedUser?.photoURL; else displayNameTemplate"
+                >
+                  <img
+                    [src]="selectedUser?.photoURL"
+                    alt="{{ selectedUser?.displayName }}"
+                  />
+                </ng-container>
+                <ng-template #displayNameTemplate>
+                  <p class="profile-no-image-but-text">
+                    {{ selectedUser?.displayName }}
+                  </p>
+                </ng-template>
+              </div>
+              <button class="remove-button" (click)="removeUser(selectedUser)">
+                Remove
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <button
+        class="create-group-button"
+        mat-button
+        (click)="finalizeGroupCreation()"
+        [disabled]="!groupNameControl.valid"
+      >
+        Create group<mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

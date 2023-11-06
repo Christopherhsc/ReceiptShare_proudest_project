@@ -1,0 +1,36 @@
+.change-group-container {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  position: relative;
+  flex-direction: column;
+}
+
+.handler-buttons {
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  font-style: italic;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.handler-buttons:hover {
+  background-color: var(--detail);
+  border-color: var(--primary);
+}
+
+.handler-buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+button:disabled,
+button[disabled] {
+  text-decoration: line-through;
+  cursor: default;
+}
+button:disabled,
+button[disabled]:hover {
+  cursor: default;
+}

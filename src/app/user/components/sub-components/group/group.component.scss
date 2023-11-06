@@ -1,0 +1,63 @@
+.group-container {
+  display: flex;
+  height: calc(100vh - 70px);
+  background-image: url(../../../../../assets/auth-picture.jpg);
+  width: 100vw;
+  background-size: cover;
+  flex-direction: row;
+}
+
+.group-settings-list {
+  width: 40%;
+  margin: 16px;
+  background-color: var(--secondaryWithOpacity);
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+}
+
+.receipt-settings-list{
+  width: 60%;
+  margin: 16px;
+  background-color: var(--secondaryWithOpacity);
+  border-radius: 10px;
+  border: 2px solid var(--primary);
+}
+
+.group-content-box {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  min-height: 25%;
+}
+.group-settings-list .group-content-box:first-child {
+  min-height: auto;
+}
+
+.group-settings-list .group-content-box:last-child {
+  border-bottom: none;
+}
+
+.receipt-content-box {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  min-height: 25%;
+}
+
+.receipt-settings-list .receipt-content-box:first-child {
+  min-height: auto;
+}
+
+.receipt-settings-list .receipt-content-box:last-child {
+  border-bottom: none;
+}

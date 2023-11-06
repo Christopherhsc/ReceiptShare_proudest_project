@@ -1,0 +1,184 @@
+<button class="add-item-button" (click)="toggleStepper()" *ngIf="!showStepper">
+  Add Receipt
+</button>
+<div *ngIf="showStepper" class="stepper-container">
+  <div class="steps">
+    <div [class.active]="currentStep === 1" (click)="setStep(1)">
+      1. Choose a Name
+    </div>
+    <div
+      [class.active]="currentStep === 2"
+      (click)="setStep(2)"
+      *ngIf="receiptNameControl.valid"
+    >
+      2. Select Users
+    </div>
+    <div
+      [class.active]="currentStep === 3"
+      (click)="setStep(3)"
+      *ngIf="selectedReceiptUsers.length >= 2 && receiptNameControl.valid"
+    >
+      3. Add Items
+    </div>
+    <div
+      [class.active]="currentStep === 4"
+      (click)="setStep(4)"
+      *ngIf="
+        items.length >= 1 &&
+        receiptNameControl.valid &&
+        selectedReceiptUsers.length >= 2
+      "
+    >
+      4. Confirm Receipt
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div *ngIf="currentStep === 1">
+    <h3>Select a name:</h3>
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          [formControl]="receiptNameControl"
+          placeholder="Receipt Name"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div *ngIf="currentStep === 2">
+    <h3>Select Users:</h3>
+    <div class="user-list">
+      <mat-checkbox
+        class="user-list-individual"
+        *ngFor="let user of usersWithSelection; trackBy: trackUserByUid"
+        [(ngModel)]="user.isSelected"
+        (change)="toggleUserSelection(user, $event.checked)"
+      >
+        {{ user.displayName }}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div *ngIf="currentStep === 3">
+    <div class="add-item-container">
+      <button
+        class="add-item-button"
+        color="primary"
+        (click)="toggleAddItemMode()"
+        *ngIf="!addItemMode && !anyItemInSplitMode()"
+      >
+        Add item
+      </button>
+    </div>
+
+    <!-- ADD ITEM MODE -->
+    <div *ngIf="addItemMode">
+      <form [formGroup]="itemForm">
+        <div class="item-inputs">
+          <mat-form-field>
+            <input matInput placeholder="Item Name" formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Total price"
+              formControlName="price"
+              type="number"
+            />
+          </mat-form-field>
+        </div>
+        <button class="add-item-button" (click)="addItem()">Save Item</button>
+      </form>
+    </div>
+
+    <div class="item-list" *ngFor="let item of items">
+      <div class="row-container" *ngIf="!item.splitMode">
+        <div class="item-list-header">
+          <p>Name: {{ item.name }}</p>
+          <p>Total price: {{ item.price }}</p>
+        </div>
+        <div class="edit-container">
+          <button
+            class="edit-item-button"
+            (click)="toggleSplitMode(item)"
+            [disabled]="selectedReceiptUsers.length === 0"
+          >
+            <mat-icon>call_split</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="item.splitMode">
+        <div class="split-users">
+          <mat-form-field *ngFor="let user of selectedReceiptUsers">
+            <input
+              matInput
+              placeholder="{{ user.displayName }}"
+              [(ngModel)]="user.currency"
+              type="number"
+            />
+          </mat-form-field>
+        </div>
+        <button class="add-item-button" (click)="saveSplit(item)">
+          Save Split
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div *ngIf="currentStep === 4">
+    <p>{{ receiptNameControl.value }}</p>
+    <mat-accordion>
+      <!-- USERS -->
+      <mat-expansion-panel *ngIf="selectedReceiptUsers.length >= 1">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Users </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul>
+          <li *ngFor="let user of selectedReceiptUsers">
+            {{ user.displayName }}
+          </li>
+        </ul>
+      </mat-expansion-panel>
+
+      <!-- ITEMS -->
+      <mat-expansion-panel *ngIf="items.length >= 1">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Items </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table>
+          <thead>
+            <tr>
+              <th>Items:</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- CONFIRM RECEIPT -->
+    <button (click)="confirmAndSaveReceipt()">Confirm</button>
+  </div>
+
+  <!-- CANCEL RECEIPT -->
+  <button
+    class="cancel-receipt-button"
+    (click)="toggleStepper()"
+    *ngIf="showStepper"
+  >
+    Cancel
+  </button>
+</div>

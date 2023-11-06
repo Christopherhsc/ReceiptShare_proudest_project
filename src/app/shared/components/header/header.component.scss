@@ -1,0 +1,69 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 75px;
+  width: 100%;
+  align-items: center;
+  top: 0;
+  color: var(--primary);
+  background-color: var(--secondary);
+  z-index: 100;
+}
+
+.header-text {
+  font-size: 32px;
+  font-style: italic;
+  text-decoration: underline;
+  padding: 0 16px;
+}
+
+.login-button {
+  padding: 0 16px;
+  margin-right: 32px;
+  border: 2px solid var(--detail);
+}
+
+.active {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.li-icon {
+  border: 2px solid var(--primary);
+  padding: 0 8px;
+  margin-right: 24px;
+}
+
+.ul-icons {
+  border: 2px solid var(--secondary);
+  border-radius: 100%;
+  color: var(--secondary);
+}
+
+.disabled-button {
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.vertical-line {
+  border: 1px solid var(--primary);
+  width: 85%;
+  margin: auto;
+}
+
+.profile-image-toolbar {
+  border-radius: 100%;
+  border: 2px solid var(--detail);
+}
+.profile-image {
+  position: relative;
+}
+.profile-image img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 4px solid var(--detail);
+  width: 160px;
+  height: 160px;
+}

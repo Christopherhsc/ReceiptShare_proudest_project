@@ -1,0 +1,46 @@
+.crucual-settings-text {
+  color: var(--danger);
+}
+
+.warning-text{
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  margin: auto;
+  position: relative;
+  justify-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.handler-buttons {
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  font-style: italic;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.handler-buttons:hover {
+  background-color: var(--detail);
+  border-color: var(--primary);
+}
+
+button:disabled,
+button[disabled] {
+  text-decoration: line-through;
+  cursor: default;
+}
+button:disabled,
+button[disabled]:hover {
+  cursor: default;
+}
+
+.delete-button{
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+}

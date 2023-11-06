@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+:root {
+  --primary: #ece2dd;
+  --secondary: #694552;
+  --detail: #342234;
+  --danger: rgb(150, 0, 0);
+
+  --secondaryWithOpacity: #69455292;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}

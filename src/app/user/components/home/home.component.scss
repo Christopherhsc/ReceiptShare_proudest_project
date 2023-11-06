@@ -1,0 +1,156 @@
+.body {
+  background-color: var(--detail);
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: transparent;
+  align-items: center;
+  height: 75px;
+}
+
+.button-container {
+  margin-left: auto;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 2s ease;
+}
+
+.add-group-text {
+  margin-right: 10px;
+  color: var(--primary);
+  background-color: transparent;
+}
+
+.icon-add {
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 100%;
+}
+
+.button-container:hover {
+  background-color: var(--primary);
+  border: 2px solid var(--detail);
+  transition: 1s ease;
+}
+.button-container:hover > .icon-add {
+  transition: 1s ease-out;
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--secondary);
+}
+
+.button-container:hover > .add-group-text {
+  color: var(--secondary);
+}
+
+.no-groups-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  margin: auto;
+}
+.no-groups-list {
+  width: 40%;
+  height: 60px;
+  margin: auto;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 82%,
+    var(--detail) 100%
+  );
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+  text-align: left;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.group-list {
+  position: relative;
+  width: 40%;
+  margin: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 82%,
+    var(--detail) 100%
+  );
+  border-radius: 5px;
+  border: 2px solid var(--primary);
+}
+
+.group-list-header {
+  color: var(--secondary);
+  padding-left: 20px;
+}
+
+.group-members {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  left: 0;
+  margin-left: 16px;
+}
+
+.group-members > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--detail);
+  width: 40px;
+  height: 40px;
+  transition: 1s ease-in;
+  box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+}
+.group-members > img:hover {
+  transition: 1s ease-out;
+  width: 100px;
+  height: 100px;
+}
+
+.group-settings-button {
+  position: absolute;
+  display: flex;
+  right: 0;
+  bottom: 0;
+  color: var(--primary);
+  background-color: var(--detail);
+  border: 2px solid var(--primary);
+  margin: 5px;
+  border-radius: 5px;
+}
+.group-settings-button:hover {
+  color: var(--detail);
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+:host ::ng-deep .mat-dialog-container {
+  padding: 20px;
+  border-radius: 8px;
+}

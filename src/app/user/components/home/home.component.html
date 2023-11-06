@@ -1,0 +1,45 @@
+<div class="body">
+  <div class="header-container">
+    <button class="button-container" (click)="showModal = true">
+      <p class="add-group-text">Add a group</p>
+      <mat-icon class="icon-add">add</mat-icon>
+    </button>
+  </div>
+
+  <app-add-group
+    *ngIf="showModal"
+    (close)="showModal = false"
+    (groupCreated)="refreshGroups()"
+  >
+  </app-add-group>
+
+  <ng-container *ngIf="groups$ | async as groups">
+    <div class="no-groups-container text-center" *ngIf="groups.length == 0">
+      <div class="no-groups-list mat-elevation-z5">
+        No groups found.<br />
+        To start a new collection, click the 'Add a group' button at the top of
+        the page.
+      </div>
+    </div>
+    <div class="container" *ngFor="let group of groups">
+      <div class="group-list mat-elevation-z5">
+        <h1 class="group-list-header">
+          {{ group.groupName }}
+        </h1>
+        <div class="group-members">
+          <img
+            *ngFor="let user of group.users"
+            [src]="user.photoURL || 'assets/image-placeholder.png'"
+            alt="{{ user.displayName }}"
+          />
+          <button
+            class="group-settings-button"
+            [routerLink]="['/user/group-settings', group.id]"
+          >
+            <mat-icon>settings</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

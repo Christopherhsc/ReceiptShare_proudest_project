@@ -1,0 +1,154 @@
+.image-container {
+  background: url("../../../../assets/auth-picture.jpg") no-repeat center;
+  width: 100vw;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.form-container-profile {
+  position: absolute;
+  display: flex;
+  background-color: var(--secondaryWithOpacity);
+  flex-direction: column;
+  border-right: 2px solid var(--detail);
+  padding: 2%;
+  max-width: 400px;
+  height: auto;
+
+  top: 75px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-text {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.inputs-container {
+  width: auto;
+}
+.inputs-container-for-email {
+  width: 100%;
+}
+.buttons-container {
+  padding-top: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  border-top: 2px solid var(--primary);
+}
+.handler-buttons {
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  height: 40px;
+  font-size: 24px;
+  font-style: italic;
+  transition: 0.4s ease-in-out;
+  margin-top: 10%;
+  cursor: pointer;
+}
+
+.image-cropper {
+  width: auto;
+  height: 30vh;
+  margin: auto;
+}
+
+.profile-container {
+  position: relative;
+  margin: auto;
+}
+.border-bottom{
+  border-bottom: 2px solid var(--primary);
+  width: 100%;
+}
+
+.image-center {
+  position: relative;
+  margin: auto;
+}
+
+.profile-container > .image-center > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--detail);
+  width: 160px;
+  height: 160px;
+}
+
+.button-for-image{
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  color: var(--primary);
+  background-color: var(--secondary);
+}
+
+//FORM
+.row-container {
+  padding-top: 5%;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.handler-buttons:hover {
+  background-color: var(--detail);
+  border-color: var(--primary);
+}
+
+.handler-buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+button:disabled,
+button[disabled] {
+  text-decoration: line-through;
+  cursor: default;
+}
+button:disabled,
+button[disabled]:hover {
+  cursor: default;
+}
+
+mat-form-field {
+  color: var(--primary);
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: var(--primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--detail) !important;
+}
+
+@media screen and (max-width: 1600px) {
+  .form-container {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .form-container {
+    height: 100%;
+    width: 90%;
+    border: none;
+    padding: 5%;
+  }
+}

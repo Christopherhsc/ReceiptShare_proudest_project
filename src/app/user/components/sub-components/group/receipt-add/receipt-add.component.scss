@@ -1,0 +1,189 @@
+.stepper-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 0;
+}
+
+.step-2 {
+  display: flex;
+  flex-direction: flex;
+}
+
+.steps div {
+  position: relative;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  transition: background-color 0.8s;
+}
+
+.steps div.active {
+  background-color: var(--detail);
+  color: var(--primary);
+}
+
+.group-members {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* This will allow the items to wrap to the next line */
+  padding-bottom: 1%;
+  bottom: 0;
+  margin-top: 8px;
+}
+
+.group-members > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--detail);
+  width: 60px;
+  height: 60px;
+  box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 1px 6px 9px -1px rgba(0, 0, 0, 1);
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-list-individual {
+  padding-top: 15px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+.add-item-container {
+  padding-top: 5%;
+}
+.add-item-button {
+  padding: 10px 20px;
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  transition: 0.4s ease-in-out;
+  border-radius: 5px;
+  margin: auto;
+  cursor: pointer;
+}
+.add-item-button:hover {
+  color: var(--primary);
+  background-color: var(--detail);
+  border-color: var(--primary);
+}
+
+.edit-container {
+  display: flex;
+  float: right;
+}
+
+.edit-item-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  mat-icon {
+    background-color: var(--secondary);
+    border-radius: 100%;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    transition: 0.8s ease-in;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+}
+.edit-item-button:hover {
+  mat-icon {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: 2px solid var(--detail);
+  }
+  transition: 5s ease-out;
+}
+
+.item-list {
+  display: flex;
+  border-bottom: 2px solid var(--primary);
+}
+.row-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  width: 100%;
+}
+.item-list-header {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.item-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 30px;
+  margin: auto;
+  width: 100%;
+}
+
+.cancel-receipt-button {
+  padding: 10px 20px;
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  transition: 0.4s ease-in-out;
+  border-radius: 5px;
+  margin: auto;
+  cursor: pointer;
+}
+
+mat-form-field {
+  color: var(--primary);
+}
+::ng-deep .inputs-container mat-form-field {
+  width: 100%;
+  display: flex;
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: var(--primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-underline {
+  background-color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-ripple {
+  background-color: var(--detail) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+    background-color: var(--primary) !important;
+  }
+
+  .mat-checkbox-background,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: var(--secondary);
+    border: 2px solid var(--primary);
+  }
+}
+
+::ng-deep .mat-checkbox.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+    background-color: var(--primary) !important;
+  }
+}

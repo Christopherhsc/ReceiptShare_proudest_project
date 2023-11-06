@@ -1,0 +1,76 @@
+<h2 class="text-center">User Management:</h2>
+<div class="button-holder-for-add-delete">
+  <ng-container *ngIf="user$ | async as user">
+    <!-- Add Users Section -->
+    <mat-form-field class="inputs-container">
+      <input
+        #searchInput
+        matInput
+        placeholder="add users"
+        [formControl]="searchControl"
+        [matAutocomplete]="users"
+      />
+    </mat-form-field>
+    <mat-autocomplete
+      #users="matAutocomplete"
+      (optionSelected)="addUserToSelection($event.option.value)"
+    >
+      <!-- Header for the dropdown -->
+      <mat-optgroup label="Add Users"></mat-optgroup>
+
+      <mat-option *ngFor="let user of users$ | async" [value]="user">
+        <div class="search-options-info-holder">
+          {{ user?.displayName }}
+          <img
+            class="profile-image-toolbar"
+            width="30"
+            height="30"
+            [src]="user.photoURL ?? 'assets/image-placeholder.png'"
+          />
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </ng-container>
+
+  <!-- Remove Users Section -->
+  <mat-form-field class="inputs-container">
+    <input
+      matInput
+      placeholder="Remove users"
+      [formControl]="removeUserControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="removeUserFromSelection($event.option.value)"
+    >
+      <!-- Header for the dropdown -->
+      <mat-optgroup label="Remove Users"></mat-optgroup>
+
+      <mat-option *ngFor="let user of selectedUsers" [value]="user">
+        <div class="search-options-info-holder">
+          {{ user?.displayName }}
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<!-- Display Selected Users -->
+<div class="group-members">
+  <ng-container *ngFor="let selectedUser of selectedUsers">
+    <ng-container *ngIf="selectedUser?.photoURL; else displayNameTemplate">
+      <img
+        [src]="selectedUser?.photoURL"
+        alt="{{ selectedUser?.displayName }}"
+      />
+    </ng-container>
+    <ng-template #displayNameTemplate>
+      <p
+        class="profile-no-image-but-text"
+        [style.fontSize]="getFontSize(selectedUser?.displayName)"
+      >
+        {{ truncateDisplayName(selectedUser?.displayName) }}
+      </p>
+    </ng-template>
+  </ng-container>
+</div>

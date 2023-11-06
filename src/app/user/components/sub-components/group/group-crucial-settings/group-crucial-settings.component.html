@@ -1,0 +1,10 @@
+<h2 class="text-center crucual-settings-text">Crucial settings:</h2>
+<h5 class="warning-text">⚠️ Caution: Adjusting these settings can significantly impact the group. Proceed with care.</h5>
+<ng-container>
+  <div class="buttons-container">
+    <button class="handler-buttons" (click)="onLeaveGroup()">Leave group</button>
+    <button class="handler-buttons delete-button" (click)="onDeleteGroup(group.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</ng-container>

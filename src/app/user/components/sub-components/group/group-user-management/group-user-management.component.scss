@@ -1,0 +1,82 @@
+.button-holder-for-add-delete {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.search-options-info-holder {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.profile-image-toolbar {
+  justify-content: space-between;
+
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 100%;
+  border: 2px solid var(--detail);
+}
+
+.profile-no-image-but-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 10px;
+  width: 64px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 2px solid var(--detail);
+  border-radius: 100%;
+  height: 64px;
+}
+
+.group-members {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* This will allow the items to wrap to the next line */
+  padding-bottom: 1%;
+  bottom: 0;
+  margin-top: 8px;
+}
+
+.group-members > img {
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid var(--detail);
+  width: 60px;
+  height: 60px;
+  box-shadow: 1px 6px 9px -1px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 6px 9px -1px rgba(0,0,0,1);
+  -moz-box-shadow: 1px 6px 9px -1px rgba(0,0,0,1);
+}
+
+mat-form-field {
+  color: var(--primary);
+}
+::ng-deep .inputs-container mat-form-field {
+  width: 100%;
+  display: flex;
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: var(--primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--detail) !important;
+}

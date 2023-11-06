@@ -1,0 +1,123 @@
+.image-container {
+  background: url("../../../../assets/auth-picture.jpg") no-repeat center;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
+
+.form-container {
+  position: absolute;
+  width: 40%;
+  height: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  background-color: var(--secondaryWithOpacity);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--detail);
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.inputs-container {
+  width: 50%;
+}
+
+.buttons-container {
+  padding-top: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+.handler-buttons {
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: 2px solid var(--detail);
+  height: 40px;
+  font-size: 24px;
+  font-style: italic;
+  transition: 0.4s ease-in-out;
+
+  cursor: pointer;
+}
+.handler-buttons:hover {
+  background-color: var(--detail);
+  border-color: var(--primary);
+}
+
+.handler-buttons-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.back-button-container {
+  color: var(--primary);
+}
+
+.back-button {
+  border: 2px solid var(--primary);
+}
+
+.padding-top {
+  margin-top: 16px;
+}
+.header-text {
+  color: var(--primary);
+}
+
+button:disabled,
+button[disabled] {
+  border: 2px solid var(--detail);
+  background-color: var(--secondary);
+  color: var(--detail);
+  text-decoration: line-through;
+  cursor: default;
+}
+button:disabled,
+button[disabled]:hover {
+  border: 2px solid var(--detail);
+  background-color: var(--secondary);
+  color: var(--detail);
+  cursor: default;
+}
+
+mat-form-field {
+  color: var(--primary);
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: var(--primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: var(--primary) !important;
+}
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: var(--detail) !important;
+}
+
+@media screen and (max-width: 1600px) {
+  .form-container {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .form-container {
+    height: 100%;
+    width: 90%;
+    border: none;
+    padding: 5%;
+    
+  }
+}

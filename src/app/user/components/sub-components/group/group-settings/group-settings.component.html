@@ -1,0 +1,29 @@
+<h2 class="text-center">Group settings:</h2>
+
+<form [formGroup]="groupNameControl" (ngSubmit)="onSubmit()">
+  <div class="change-group-container">
+    <mat-form-field>
+      <input type="text" matInput formControlName="groupName" />
+    </mat-form-field>
+    <button
+      class="handler-buttons"
+      type="submit"
+      mat-raised-button
+      [disabled]="!groupNameControl.valid"
+    >
+      Update Group Name
+    </button>
+    <mat-error *ngIf="groupNameControl.hasError('pattern')">
+      Group name can only contain letters
+    </mat-error>
+    <mat-error *ngIf="groupNameControl.hasError('required')">
+      Group name is required.
+    </mat-error>
+    <mat-error *ngIf="groupNameControl.hasError('minlength')">
+      Group name should be at least 1 character.
+    </mat-error>
+    <mat-error *ngIf="groupNameControl.hasError('maxlength')">
+      Group name should not exceed 20 characters.
+    </mat-error>
+  </div>
+</form>

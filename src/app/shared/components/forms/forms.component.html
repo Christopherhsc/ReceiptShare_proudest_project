@@ -1,0 +1,137 @@
+<div class="image-container">
+  <ng-container *ngIf="login">
+    <div>
+      <form
+        [@slideInOut]="'login'"
+        class="form-container"
+        [formGroup]="loginForm"
+        (ngSubmit)="loginSubmit()"
+      >
+        <h1 class="header-text">Login</h1>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Email:"
+            required="true"
+          />
+          <mat-error *ngIf="email?.errors?.['required']"
+            >Email is required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password:"
+          />
+          <mat-error *ngIf="password?.errors?.['required']"
+            >Password is required</mat-error
+          >
+        </mat-form-field>
+        <div class="buttons-container">
+          <button class="handler-buttons" type="submit">Login</button>
+          <button class="handler-buttons padding-top" routerLink="/register">
+            Register
+          </button>
+        </div>
+        <div class="back-button-container">
+          <button class="back-button" mat-stroked-button routerLink="/">
+            <mat-icon>arrow_back_ios</mat-icon>Home
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="register">
+    <div>
+      <form
+        [@slideInOut]="showLogin ? 'login' : 'register'"
+        class="form-container"
+        [formGroup]="registrationForm"
+        (ngSubmit)="registerSubmit()"
+      >
+        <h1 class="header-text">Register</h1>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Name:"
+          />
+          <mat-error *ngIf="name?.errors?.['required']">
+            Display name is required.
+          </mat-error>
+          <mat-error *ngIf="name?.errors?.['minlength']">
+            Display name is too short.
+          </mat-error>
+          <mat-error *ngIf="name?.errors?.['maxlength']">
+            Display name is too long.
+          </mat-error>
+          <mat-error *ngIf="name?.errors?.['pattern']">
+            Only letters are allowed.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Email:"
+          />
+          <mat-error *ngIf="email?.errors?.['required']">
+            Email is required.</mat-error
+          >
+          <mat-error *ngIf="email?.errors?.['email']">
+            Not a valid email.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password:"
+          />
+          <mat-error *ngIf="password?.errors?.['required']">
+            Not a valid password.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="inputs-container">
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Confirm Password:"
+          />
+          <mat-error *ngIf="confirmPassword?.errors?.['required']">
+            Passwords doesnt match.</mat-error
+          >
+        </mat-form-field>
+        <mat-error *ngIf="registrationForm.errors?.['passwordsDontMatch']"
+          >Passwords should match</mat-error
+        >
+        <div class="buttons-container">
+          <button
+            class="handler-buttons"
+            type="submit"
+            [disabled]="!registrationForm.valid"
+          >
+            Create Account
+          </button>
+          <mat-error *ngIf="!registrationForm.valid"
+            >Please ensure that all fields are valid before proceeding with the
+            account creating process</mat-error
+          >
+        </div>
+        <div class="back-button-container">
+          <button class="back-button" mat-stroked-button routerLink="/login">
+            <mat-icon>arrow_back_ios</mat-icon>Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,138 @@
+<body class="body">
+  <div class="image-container" *ngIf="user$ | async as user">
+    <div class="form-container-profile">
+      <p class="header-text">
+        You have successfully registered!<br />
+        You can now add additional information to help other users find you more
+        easily.<br />
+        If you prefer, you can skip this step and update your profile later.
+      </p>
+      <div class="profile-container">
+        <div class="image-center">
+          <img
+            [src]="
+              croppedImagePreview ||
+              user.photoURL ||
+              'assets/image-placeholder.png'
+            "
+          />
+        </div>
+        <button
+          class="button-for-image"
+          mat-mini-fab
+          (click)="inputField.click()"
+          *ngIf="!isCropping"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <input
+          class="input"
+          type="file"
+          hidden
+          #inputField
+          (change)="fileChangedEvent($event)"
+        />
+        <div *ngIf="isCropping" class="image-cropper-container">
+          <image-cropper
+            class="image-cropper"
+            #cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="1 / 1"
+            [roundCropper]="true"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            [cropperMaxWidth]="650"
+            [cropperMaxHeight]="650"
+            [cropperMinHeight]="300"
+            [cropperMinWidth]="300"
+          ></image-cropper>
+        </div>
+        <div class="handler-buttons-container" *ngIf="isCropping">
+          <button class="handler-buttons" (click)="discardChanges()">
+            Cancel
+          </button>
+          <button class="handler-buttons" (click)="uploadFile($event, user)">
+            Apply
+          </button>
+        </div>
+      </div>
+      <div class="border-bottom"></div>
+      <!-- FORM -->
+
+      <form [formGroup]="profileForm" (ngSubmit)="editProfileSubmit()">
+        <div class="header-text">
+          <p>Fill in your first and last name for easier account recovery.</p>
+          <div class="row-container">
+            <div class="row">
+              <mat-form-field class="inputs-container">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="firstName"
+                  placeholder="First Name (optional)"
+                />
+              </mat-form-field>
+              <mat-form-field class="inputs-container">
+                <input
+                  type="text"
+                  matInput
+                  formControlName="lastName"
+                  placeholder="Last Name (optional)"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="inputs-container">
+                <input
+                  matInput
+                  formControlName="displayName"
+                  placeholder="Display Name:"
+                />
+                <mat-error *ngIf="name?.errors?.['required']">
+                  Display name is required.
+                </mat-error>
+                <mat-error *ngIf="name?.errors?.['minlength']">
+                  Display name is too short.
+                </mat-error>
+                <mat-error *ngIf="name?.errors?.['maxlength']">
+                  Display name is too long.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="inputs-container">
+                <input matInput formControlName="email" placeholder="Email:" />
+                <mat-error *ngIf="email?.errors?.['required']">
+                  Email is required.</mat-error
+                >
+                <mat-error *ngIf="email?.errors?.['email']">
+                  Not a valid email.</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <mat-error *ngIf="!profileForm.valid"
+            >Please ensure that all fields are valid before proceeding
+            updating your profile.</mat-error
+          >
+          </div>
+
+          <div class="buttons-container">
+            <button
+              class="handler-buttons"
+              type="submit"
+              routerLink="/user/home"
+            >
+              Skip this step for now
+            </button>
+            <button
+              class="handler-buttons"
+              type="submit"
+              [disabled]="!profileForm.valid"
+            >
+              Save profile and proceed
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
